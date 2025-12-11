@@ -33,7 +33,7 @@ Even moderate rainfall can cause street-level flooding when drainage canals ("ka
 - are unsafe for LGU personnel during bad weather.
 Deep learning–based computer vision has advanced significantly, enabling automatic detection and analysis of visual patterns. This project applies such techniques to the drainage maintenance domain through **DrainSight**, a lightweight system for early detection of trash buildup and water stagnation using short canal videos.
 
-##Related Work
+## Related Work
 
 ## Methodology
 
@@ -59,6 +59,29 @@ Internally, YOLO uses CNN layers involving:
 - Downsampling/pooling, and
 - Detection heads.
 
+### 3. Optical Flow  
+Water motion is computed using **Farneback dense optical flow**:
+- consecutive frames converted to grayscale,
+- magnitude of motion vectors computed,
+- normalized into a `FlowScore ∈ [0, 1]`.
+
+Low flow magnitude ⇒ possible stagnation ⇒ higher clogging risk.
+
+### 4. Risk Scoring
+The final clogging risk is computed as:
+
+\[
+Risk = w_{trash} \cdot TrashScore + w_{flow} \cdot (1 - FlowScore)
+\]
+
+Where:
+- \( w_{trash} = 0.6 \)
+- \( w_{flow} = 0.4 \)
+
+Thresholds:
+- **LOW** if Risk < 0.3  
+- **MODERATE** if 0.3 ≤ Risk < 0.7  
+- **HIGH** if Risk ≥ 0.7  
 
 
 
