@@ -1,6 +1,6 @@
 # CSC173 Deep Computer Vision Project Proposal
 **Student:** Kaycee T. Nalzaro, 2021-1756  
-**Date:** December 15, 2025
+**Date:** December 11, 2025
 
 ## 1. Project Title
 **DrainSight: Video-Based Drainage Risk Assessment Using Deep Computer Vision**
