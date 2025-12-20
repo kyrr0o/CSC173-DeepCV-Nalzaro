@@ -47,14 +47,6 @@ object detection and motion analysis.
 - Optical flow methods, which track pixel-wise motion between image frames, have also been explored for river flow measurement. Optical flow algorithms can be combined with deep neural networks to capture complex, unstructured motion patterns in natural rivers [5].
 - The framework serves as a powerful tool for understanding the dynamics of flood-affected areas and optimizing rescue strategies. This framework capability enhances the efficiency and effectiveness of humanitarian aid operations in flood-impacted regions [6].
 
-## Reference
-[1] Huang, H., Lei, X., Liao, W., Li, H., Wang, C., & Wang, H. (2023). A real-time detecting method for continuous urban flood scenarios based on computer vision on block scale. Remote Sensing, 15(6), 1696.
-[2] Yan, X., Zhu, Y., Wang, Z., Xu, B., He, L., & Xia, R. (2025). Intelligent flood scene understanding using computer vision-based multi-object tracking. Water, 17(14), 2111.
-[3] Tomas, J. P. Q., Tupas, J. E. E., Soniel, M. T., Caruz, C. H. M. E., & Babar, D. B. (2024). Real-time detection of floating debris in waterways using YOLOv8. In Proceedings of the 14th International Workshop on Computer Science and Engineering (WCSE 2024).
-[4] Tikász, G., Gyalai-Korpos, M., Fleit, G., & Baranya, S. (2025). Real-time detection of macroplastic pollution in inland waters: development of a lightweight image recognition system. Frontiers in Environmental Science, 13, 1666271.
-[5] Chen, W., Nguyen, K. A., & Lin, B.-S. (2025). Deep learning and optical flow for river velocity estimation: Insights from a field case study. Sustainability.
-[6] Yan, X., Zhu, Y., Wang, Z., Xu, B., He, L., & Xia, R. (2025). Intelligent flood scene understanding using computer vision-based multi-object tracking. Water, 17(14), 2111.
-
 ## Methodology
 ### Dataset
 This project operates on raw video data rather than a static labeled image dataset.
@@ -93,6 +85,77 @@ The proposed system follows a frame-based video processing pipeline:
 model = YOLO("yolov8n.pt")
 results = model(frame, imgsz=640, conf=0.05, verbose=False)
 ```
+
+## Experiments & Results
+
+### Evaluation Metrics
+Since the system operates in inference mode, evaluation is performed at the system level rather than through supervised training metrics.
+| Metric                 | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| Trash Area (%)         | Percentage of frame covered by detected objects   |
+| Optical Flow Magnitude | Mean motion magnitude between frames              |
+| Normalized Flow        | Flow magnitude scaled to [0,1]                    |
+| Risk Score             | Weighted fusion of trash density and inverse flow |
+| Risk Level             | LOW / MODERATE / HIGH                             |
+| FPS                    | Frames per second during inference                |
+
+Scenario-Based Evaluation  
+| Scenario         | Expected Risk | Observed Risk |
+| ---------------- | ------------- | ------------- |
+| Clean drainage   | LOW           | LOW           |
+| Light trash      | MODERATE      | MODERATE      |
+| Heavy trash      | HIGH          | HIGH          |
+| Clogged drainage | HIGH          | HIGH          |
+
+### Demo
+
+## Discussion
+- **Strengths:** The system operates in real time, requires no labeled training data, and produces interpretable visual outputs.
+- **Limitations:** Trash estimation is based on object detection density and may include non-waste objects when using pretrained weights. Performance may degrade under poor lighting conditions.
+- **Insights:** Combining object detection with motion analysis provides more informative risk assessment than using detection alone.
+
+## Ethical Considerations
+- **Bias:** The pretrained model may favor object categories present in the COCO dataset.
+- **Privacy:** The system does not perform face recognition or identity tracking.
+- **Misuse:** The system is intended for environmental monitoring and should not be repurposed for surveillance.
+
+## Conclusion
+This project demonstrates a practical deep computer vision system for drainage risk assessment using video analysis. By integrating YOLO-based object detection with optical flow motion estimation, the system generates interpretable risk scores and annotated output videos without requiring supervised training. Future work includes fine-tuning on domain-specific waste datasets, improving object filtering, and deploying the system on edge devices for real-time monitoring.
+
+## Installation
+1. Clone the repository:
+   ```python
+   git clone https://github.com/yourusername/CSC173-DeepCV-YourLastName
+   ```         
+3. Install dependencies:
+   ```python
+   pip install -r requirements.txt
+   ```
+### Requirements.txt
+  ```python
+  torch>=2.0
+  ultralytics
+  opencv-python
+  numpy
+   ```
+
+## Reference
+- [1] Huang, H., Lei, X., Liao, W., Li, H., Wang, C., & Wang, H. (2023). A real-time detecting method for continuous urban flood scenarios based on computer vision on block scale. Remote Sensing, 15(6), 1696.
+- [2] Yan, X., Zhu, Y., Wang, Z., Xu, B., He, L., & Xia, R. (2025). Intelligent flood scene understanding using computer vision-based multi-object tracking. Water, 17(14), 2111.
+- [3] Tomas, J. P. Q., Tupas, J. E. E., Soniel, M. T., Caruz, C. H. M. E., & Babar, D. B. (2024). Real-time detection of floating debris in waterways using YOLOv8. In Proceedings of the 14th International Workshop on Computer Science and Engineering (WCSE 2024).
+- [4] Tikász, G., Gyalai-Korpos, M., Fleit, G., & Baranya, S. (2025). Real-time detection of macroplastic pollution in inland waters: development of a lightweight image recognition system. Frontiers in Environmental Science, 13, 1666271.
+- [5] Chen, W., Nguyen, K. A., & Lin, B.-S. (2025). Deep learning and optical flow for river velocity estimation: Insights from a field case study. Sustainability.
+- [6] Yan, X., Zhu, Y., Wang, Z., Xu, B., He, L., & Xia, R. (2025). Intelligent flood scene understanding using computer vision-based multi-object tracking. Water, 17(14), 2111.
+
+## Github Page
+View this project site: [https://github.com/kyrr0o/CSC173-DeepCV-Nalzaro.git]
+
+
+
+
+
+
+
 
 
 
