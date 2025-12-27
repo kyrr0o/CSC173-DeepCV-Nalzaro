@@ -61,7 +61,7 @@ Four initial video samples were used to represent different observed conditions:
 These categories are used for qualitative evaluation and are not treated as supervised class labels.
 
 ## Architecture
-![Model Diagram](images/architecture.png)
+![Model Diagram](images/diagram.png)
 
 The proposed system follows a frame-based video processing pipeline:
 - A pretrained YOLOv8n model performs object detection on each frame.
@@ -99,13 +99,30 @@ Since the system operates in inference mode, evaluation is performed at the syst
 | Risk Level             | LOW / MODERATE / HIGH                             |
 | FPS                    | Frames per second during inference                |
 
-Scenario-Based Evaluation  
-| Scenario         | Expected Risk | Observed Risk |
-| ---------------- | ------------- | ------------- |
-| Clean drainage   | LOW           | LOW           |
-| Light trash      | MODERATE      | MODERATE      |
-| Heavy trash      | HIGH          | HIGH          |
-| Clogged drainage | HIGH          | HIGH          |
+Since the system performs frame-by-frame inference on video data, the computed metrics naturally fluctuate over time due to camera motion, 
+object appearance, and water movement. Evaluation is therefore conducted using observed ranges and dominant risk trends rather than single-frame values.
+
+| Scenario         | Expected Risk | Observed Risk | Dominant Trend                    |
+| ---------------- | ------------- | ------------- | --------------------------------- |
+| Clean drainage   | LOW           | LOW           | Majority LOW, occasional MODERATE |
+| Light trash      | MODERATE      | MODERATE      | Consistently MODERATE             |
+| Heavy trash      | HIGH          | HIGH          | Consistently HIGH                 |
+| Clogged drainage | HIGH          | HIGH          | Consistently HIGH                 |
+
+### Detailed Observed Ranges
+
+| Scenario | Trash Area (%) | Flow Magnitude (Normalized) | Risk Score Range | FPS Range | Dominant Behavior |
+|--------|----------------|-----------------------------|------------------|-----------|-------------------|
+| Clean drainage | 0.00 – 25.81 | 0.97 (≈ 0.19) | 0.00 – 0.37 | 78.82 – 88.26 | Majority LOW, minor MODERATE |
+| Light trash | 13.08 – 35.22 | 1.06 (≈ 0.21) | 0.29 – 0.44 | 34.67 – 41.11 | Consistently MODERATE |
+| Heavy / Clogged | 31.67 – 65.37 | 2.31 – 5.24 (0.46 – 1.00) | 0.25 – 0.63 | 54.32 – 68.30 | Consistently HIGH |
+
+![Observed Scores](images/graph.png)
+
+The bar graph compares the observed risk score and normalized flow magnitude across clean, light trash, and heavy/clogged drainage scenarios. Clean 
+drainage exhibits a high risk stability indicator due to strong water flow and minimal waste accumulation. Light trash conditions show a moderate risk 
+level with slightly reduced flow. In contrast, heavy or clogged drainage demonstrates significantly reduced flow combined with elevated risk behavior, indicating 
+poor drainage conditions. This visualization highlights the inverse relationship between water flow and drainage risk.
 
 ### Demo
 
