@@ -142,7 +142,7 @@ This project demonstrates a practical deep computer vision system for drainage r
 ## Installation
 1. Clone the repository:
    ```python
-   git clone https://github.com/yourusername/CSC173-DeepCV-Nalzaro
+   git clone https://github.com/kyrr0o/CSC173-DeepCV-Nalzaro.git
    ```         
 2. Install dependencies:
    ```python
