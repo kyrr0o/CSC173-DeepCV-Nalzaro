@@ -144,10 +144,12 @@ This project demonstrates a practical deep computer vision system for drainage r
    ```python
    git clone https://github.com/yourusername/CSC173-DeepCV-YourLastName
    ```         
-3. Install dependencies:
+2. Install dependencies:
    ```python
    pip install -r requirements.txt
    ```
+3. Run main.ipynb
+
 ### Requirements.txt
   ```python
   torch>=2.0
