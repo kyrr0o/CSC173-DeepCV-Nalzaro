@@ -119,10 +119,10 @@ object appearance, and water movement. Evaluation is therefore conducted using o
 
 ![Observed Scores](images/graph.png)
 
-The bar graph compares the observed risk score and normalized flow magnitude across clean, light trash, and heavy/clogged drainage scenarios. Clean 
-drainage exhibits a high risk stability indicator due to strong water flow and minimal waste accumulation. Light trash conditions show a moderate risk 
-level with slightly reduced flow. In contrast, heavy or clogged drainage demonstrates significantly reduced flow combined with elevated risk behavior, indicating 
-poor drainage conditions. This visualization highlights the inverse relationship between water flow and drainage risk.
+The bar graph compares the observed risk score and normalized flow magnitude across clean, light trash, and heavy or clogged drainage scenarios. Clean drainage exhibits low 
+risk behavior, characterized by minimal waste accumulation and stable water flow. Light trash conditions show a moderate increase in risk, accompanied by slightly elevated 
+flow values, indicating partial obstruction. In contrast, heavy or clogged drainage scenarios demonstrate significantly higher risk scores together with abnormal flow behavior, 
+reflected by elevated normalized flow magnitude. This visualization highlights the relationship between waste accumulation, flow irregularities, and increasing drainage risk, emphasizing how unstable or disrupted flow conditions contribute to higher risk classification.
 
 ### Demo
 
