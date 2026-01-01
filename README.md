@@ -125,6 +125,7 @@ flow values, indicating partial obstruction. In contrast, heavy or clogged drain
 reflected by elevated normalized flow magnitude. This visualization highlights the relationship between waste accumulation, flow irregularities, and increasing drainage risk, emphasizing how unstable or disrupted flow conditions contribute to higher risk classification.
 
 ### Demo
+[CSC173_Nalzaro_Final.mp4](demo/CSC173_Nalzaro_Final.mp4)
 
 ## Discussion
 - **Strengths:** The system operates in real time, requires no labeled training data, and produces interpretable visual outputs.
